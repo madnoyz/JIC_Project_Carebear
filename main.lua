@@ -1,6 +1,6 @@
 -- screen / window init
-SCREEN_WIDTH, SCREEN_HEIGHT = MOAIEnvironment.screenWidth or 720, MOAIEnvironment.screenHeight or 1280
-SCREEN_UNITS_X, SCREEN_UNITS_Y = 720, 1280
+SCREEN_WIDTH, SCREEN_HEIGHT = MOAIEnvironment.screenWidth or 1280, MOAIEnvironment.screenHeight or 720
+SCREEN_UNITS_X, SCREEN_UNITS_Y = 1280, 720
 MOAISim.openWindow("Template", SCREEN_WIDTH, SCREEN_HEIGHT )
 
 
