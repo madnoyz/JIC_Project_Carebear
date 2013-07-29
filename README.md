@@ -1,1 +1,1 @@
-This is a template for Moai projects.
+Just Ice Cold Project Carebear
