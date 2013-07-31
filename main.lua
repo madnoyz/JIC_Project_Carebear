@@ -1,25 +1,23 @@
--- screen / window init
-SCREEN_WIDTH, SCREEN_HEIGHT = MOAIEnvironment.screenWidth or 1280, MOAIEnvironment.screenHeight or 720
-SCREEN_UNITS_X, SCREEN_UNITS_Y = 1280, 720
-MOAISim.openWindow("Template", SCREEN_WIDTH, SCREEN_HEIGHT )
+STRICT = true
+DEBUG = true
 
+require 'zoetrope'
 
--- requirements
-dofile("config.lua")
+the.app = App:new
+{
+	onRun = function (self)
+		self.player = Fill:new{ x = 0, y = 0, width = 32, height = 48, fill = { 0, 0, 255}, 
+		onUpdate = function (self, elapsed) 
+			if the.keys:justPressed('left', 'a') then
+				self.velocity.x = -100
+			elseif the.keys:justPressed('right', 'd') then
+				self.velocity.x = 100
+			else
+				self.velocity.x = 0
+			end
+		end 
+		}
 
--- initialize things here
-beholder.observe("key_down", "esc", function()
-  os.exit()
-end)
-local game = Game:new()
-
-
--- main simulation loop
-local mainThread = MOAICoroutine.new ()
-mainThread:run(function()
-  while true do
-    local dt = MOAISim.getStep()
-    -- game.update(dt)
-    coroutine.yield()
-  end
-end)
+		self:add(self.player)
+	end
+}
