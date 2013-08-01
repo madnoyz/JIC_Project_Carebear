@@ -27,7 +27,7 @@ App = Class:extend
 {
 	-- Property: name
 	-- This is shown in the window title bar.
-	name = 'Zoetrope',
+	name = 'Project Care Bear',
 	
 	-- Property: icon
 	-- A path to an image to use as the window icon (a 32x32 PNG is recommended).
