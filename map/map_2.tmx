@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="19" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="../tiles.png" width="192" height="480"/>
+  <tile id="6">
+   <properties>
+    <property name="solid" value="1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="solid" value="1"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="62">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="solid" value="2"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="25" height="19">
+  <data encoding="base64" compression="zlib">
+   eJzNkcEKwzAMQx03l/UPthV22v/01P//lCVggWzaQ72UTSBoaaJnqyK/lZpL86P5Gbw03+lMSTAmu6eWFTmd8SLGlGDgnlrWHuNt59bkHthfLeuor/59S+7BXXHnuuPs/+DMKr67+A3znBWyKhmcIp7z7R7gIJ87rAMYq/jOkQlm/C9n1efdxPfDPJ4/u0dUZs6sbuSRmi1zpme8j+Ywa/QeIn72K7qCrs7/Z30A8ksF6A==
+  </data>
+ </layer>
+ <layer name="map" width="25" height="19">
+  <data encoding="base64" compression="zlib">
+   eJztkM0KgCAQhLvlW/UDmv1TFEXv/yDNYRf2klBqJwc+BlbdkcmyJFYLOtBHzJjJl4gZO/nhuUcDAwpQggrUwIoz65nReL5/k8P/1YFyBzCCyXHHt5+VfBOzUN2zTvKL3BDcWQjlQD24RIn51xzXHpmZlPSnbpfQC4k=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="25" height="19" opacity="0.01">
+  <object name="Spawn" x="238" y="285" width="48" height="66">
+   <properties>
+    <property name="from" value="map_1"/>
+   </properties>
+  </object>
+  <object name="Door" x="572" y="89" width="45" height="70">
+   <properties>
+    <property name="to" value="home"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="map" width="25" height="19">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUgIApjc03B2ILGtthC8R2ZOo1QWIbIrGNoLQ+EBsDsTMQu5BotisQ2wOxAxA7ArETELsDsRsUo7M9SDR/FIyCwQ4AeP0GHA==
+  </data>
+ </layer>
+</map>

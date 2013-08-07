@@ -1,75 +1,51 @@
-STRICT = true
+STRICT = false
 DEBUG = true
 
+MAP = 'home'
+PREVMAP = ' '
+STATE = {}
+
 require 'zoetrope'
-
-Player = Animation:extend
-{ 
-	width = 32, height = 48, 
-	image = 'assets/player.png',
-	sequences = {
-		right = { frames = { 1, 2, 3, 4, 5, 6}, fps = 10},
-		left =  { frames = { 7, 8, 9, 10, 11, 12}, fps = 10 }
-	},
-	acceleration = { y = 400 },
-	canJump = false,
-
-	onUpdate = function (self, elapsed) 
-		if the.keys:pressed('left', 'a') then
-			self.velocity.x = -100
-			self:play('left')
-		elseif the.keys:pressed('right', 'd') then
-			self.velocity.x = 100
-			self:play('right')
-		else
-			self.velocity.x = 0
-			self:freeze()
-		end
-
-		if the.keys:justPressed(' ') and self.canJump == true then
-			playSound('assets/Jump-SoundBible.com-1007297584.mp3')
-			self.velocity.y = -300
-			self.canJump = false
-		end
-
-		if self.y >= the.app.height then
-			self.x = 0
-			self.y = 0
-		end
-	end,
-
-	onCollide= function (self)
-		if self.velocity.y > 50 then
-			self.velocity.y = 0
-			self.canJump = true
-		end
-		
-	end
-}
-
-Platform = Tile:extend
-{
-	width = 128, height = 32,
-	image = 'assets/brick.png',  
-	
-	onCollide = function (self, other)
-		self:displace(other)
-	end
-}
+require 'map'
+require 'object'
 
 the.app = App:new
 {
 	onRun = function (self)
-		self.player = Player:new()
-		self:add(self.player)
-		self.platforms = Group:new()
-		self.platforms:add(Platform:new{ x = 0, y = 400})
-		self.platforms:add(Platform:new{ x = 300, y = 300})
-		self.platforms:add(Platform:new{ x = 250, y = 400})
-		self:add(self.platforms)
+    self.save = Storage:new{ filename = 'save.dat' }
+    self.view = MapView:new()
 	end,
+  
+  onUpdate = function (self)
+        if the.keys:justPressed('s') then
+            -- Save state data
+            self.save.data = STATE
+            self.save:save()
+        end
 
-	onUpdate = function ( self )
-		self.platforms:collide(self.player)
-	end
+        if the.keys:justPressed('l') then
+            -- Load data into state
+            self.save:load()
+            STATE = self.save.data
+
+            -- Reload view
+            self.view = MapView:new()
+            the.app.view:flash({0, 0, 0}, .75)
+        end
+
+        if the.keys:justPressed('d') then
+            -- Save empty state data
+            self.save.data = {}
+
+            self.save:save()
+
+            -- Load data into state
+            self.save:load()
+            STATE = self.save.data
+
+            -- Reload view
+            self.view = MapView:new()
+            the.app.view:flash({0, 0, 0}, .75)
+        end
+    end
 }
