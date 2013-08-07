@@ -5,11 +5,13 @@ require 'zoetrope'
 require 'Hero'
 require 'Map'
 require 'MenuView'
+require 'OptionsMenu'
 require 'RecordPlayer'
 
 the.JUMP_KEY = ' '
 the.ATK_KEY = 'up'
 the.SHIELD_KEY = 'b'
+the.FONT_TINT = { 255/255, 0/255, 0/255}
 
 the.app = App:new
 {

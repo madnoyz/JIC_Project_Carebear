@@ -29,6 +29,12 @@ MenuView = View:extend
         end
       end
       
+      self.options.onMouseUp = function (self)
+        if self.beingClicked then
+          the.app.view = OptionsView:new()
+        end
+      end
+      
       self.exitGame.onMouseUp = function (self)
         if self.beingClicked then
           the.app.quit()
