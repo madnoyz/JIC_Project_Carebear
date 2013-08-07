@@ -10,7 +10,7 @@ MapView = View:extend
     onNew = function (self)
 
         self.hero = Hero:new()
- 
+
         self:loadLayers('map/' .. MAP .. '.lua')
 
         if PREVMAP then
@@ -24,7 +24,7 @@ MapView = View:extend
         end
 
         self:add(self.hero)
- 
+
         self.focus = self.hero
         self:clampTo(self.map)
 
@@ -37,6 +37,7 @@ MapView = View:extend
     onUpdate = function (self)
         self.map:displace(self.hero)
         self.objects:collide(self.hero)
+        self.hero:collide(self.map)
     end
     
 }

@@ -1,37 +1,20 @@
-STRICT = true
+STRICT = false
 DEBUG = true
 
-require 'zoetrope'
-require 'Hero'
-require 'Map'
-require 'MenuView'
-require 'RecordPlayer'
+MAP = 'home'
+PREVMAP = ' '
+STATE = {}
 
-the.JUMP_KEY = ' '
-the.ATK_KEY = 'up'
-the.SHIELD_KEY = 'b'
+require 'zoetrope'
+require 'map'
+require 'object'
 
 the.app = App:new
 {
-  name = 'Project Care Bear',
-  width = 980,
-  heigth = 640,
-  
-  heroHealth = 100,
-  heroAmmo = 100,
-  heroEnergy = 5, 
-  
-  onRun = function (self)
-    self.music = love.audio.newSource("snd/FindYou.ogg", "stream")
-    self.music:setVolume(0.3)
-    self.music:setLooping(true)
-    love.audio.play(self.music)
-    
+	onRun = function (self)
     self.save = Storage:new{ filename = 'save.dat' }
-    
-    self.view = MenuView:new()
-    
-  end,
+    self.view = MapView:new()
+	end,
   
   onUpdate = function (self)
         if the.keys:justPressed('s') then
@@ -50,7 +33,7 @@ the.app = App:new
             the.app.view:flash({0, 0, 0}, .75)
         end
 
-        if the.keys:justPressed('x') then
+        if the.keys:justPressed('d') then
             -- Save empty state data
             self.save.data = {}
 
@@ -64,6 +47,5 @@ the.app = App:new
             self.view = MapView:new()
             the.app.view:flash({0, 0, 0}, .75)
         end
-    end 
-   
+    end
 }
