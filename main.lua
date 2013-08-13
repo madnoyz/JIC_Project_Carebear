@@ -1,9 +1,16 @@
-STRICT = true
-DEBUG = true
+STRICT = false
+DEBUG = false
+
+MAP = 'home'
+PREVMAP = ' '
+STATE = {}
 
 require 'zoetrope'
 require 'Hero'
+require 'Enemies'
+require 'Bullet'
 require 'Map'
+require 'Object'
 require 'MenuView'
 require 'OptionsMenu'
 require 'RecordPlayer'
@@ -11,7 +18,7 @@ require 'RecordPlayer'
 the.JUMP_KEY = ' '
 the.ATK_KEY = 'up'
 the.SHIELD_KEY = 'b'
-the.FONT_TINT = { 255/255, 0/255, 0/255}
+the.FONT_TINT = { 0/255, 155/255, 255/255 }
 
 the.app = App:new
 {
@@ -24,7 +31,7 @@ the.app = App:new
   heroEnergy = 5, 
   
   onRun = function (self)
-    self.music = love.audio.newSource("snd/FindYou.ogg", "stream")
+    self.music = love.audio.newSource("snd/Prelude.ogg", "stream")
     self.music:setVolume(0.3)
     self.music:setLooping(true)
     love.audio.play(self.music)

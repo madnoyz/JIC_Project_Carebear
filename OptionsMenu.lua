@@ -1,7 +1,12 @@
+gui = require 'src.Quickie'
+require 'src.Quickie.style-default'
+
 OptionsView = View:extend
 {
-  onNew = function (self)
+  
     
+  onNew = function (self)
+
 --[[------------------------------
 --  Options Menu Text
 --]]------------------------------
@@ -36,14 +41,19 @@ OptionsView = View:extend
       end
     end
     
+
   end,
  
  --[[------------------------------
 --  Updates the Options View
 --]]------------------------------
   onUpdate = function (self)
+    
+    
     self.optionsText.visible = true
     self.exitOptions.visible = true
+  
+  
   end
   
 }

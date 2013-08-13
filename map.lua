@@ -10,6 +10,7 @@ MapView = View:extend
     onNew = function (self)
 
         self.hero = Hero:new()
+        self.bullet = Bullet:new()
  
         self:loadLayers('map/' .. MAP .. '.lua')
 
@@ -24,6 +25,7 @@ MapView = View:extend
         end
 
         self:add(self.hero)
+        self:add(self.bullet)
  
         self.focus = self.hero
         self:clampTo(self.map)

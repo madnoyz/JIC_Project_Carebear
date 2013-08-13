@@ -25,6 +25,7 @@ MenuView = View:extend
       
       self.newGame.onMouseUp = function (self)
         if self.beingClicked then
+          self:die()
           the.app.view = MapView:new()
         end
       end
