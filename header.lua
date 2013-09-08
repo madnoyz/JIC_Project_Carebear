@@ -3,7 +3,6 @@ require 'src.heartbar'
 require 'src.menus'
 
 require 'middleclass'
-require 'AnAL'
 require 'AdvTiledLoader'
 require 'HardonCollider'
 
