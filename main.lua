@@ -1,78 +1,106 @@
-STRICT = false
-DEBUG = false
+require 'header'
 
-MAP = 'home'
-PREVMAP = ' '
-STATE = {}
-
-require 'zoetrope'
-require 'Hero'
-require 'Enemies'
-require 'Bullet'
-require 'Map'
-require 'Object'
-require 'MenuView'
-require 'OptionsMenu'
-require 'RecordPlayer'
-
-the.JUMP_KEY = ' '
-the.ATK_KEY = 'up'
-the.SHIELD_KEY = 'b'
-the.FONT_TINT = { 0/255, 155/255, 255/255 }
-
-the.app = App:new
-{
-  name = 'Project Care Bear',
-  width = 980,
-  heigth = 640,
+function love.load()
+  menuSong = love.audio.newSource("snd/Prelude.ogg", "stream")
+  menuSong:setVolume(0.3)
+  menuSong:setLooping(true)
+  love.audio.play(menuSong)
   
-  heroHealth = 100,
-  heroAmmo = 100,
-  heroEnergy = 5, 
+  mnu_gamecompany = love.graphics.newImage('art/jicway.png')
   
-  onRun = function (self)
-    self.music = love.audio.newSource("snd/Prelude.ogg", "stream")
-    self.music:setVolume(0.3)
-    self.music:setLooping(true)
-    love.audio.play(self.music)
-    
-    self.save = Storage:new{ filename = 'save.dat' }
-    
-    self.view = MenuView:new()
-    
-  end,
+  mnu_bg = love.graphics.newImage('art/AdventureBear.jpg')
+  mnu_btnplay = love.graphics.newImage('art/btnNewGame.png')
+  mnu_btnload = love.graphics.newImage('art/btnExit.png')
+  mnu_btnopt = love.graphics.newImage('art/btnOptions.png')
+end
+
+function love.update(dt)
+end
+
+function love.draw()
+  love.graphics.draw(mnu_bg, 80, 0)
+end
+
+
+--[[
+function love.load()
+	love.mouse.setVisible(false) -- make default mouse invisible
   
-  onUpdate = function (self)
-        if the.keys:justPressed('s') then
-            -- Save state data
-            self.save.data = STATE
-            self.save:save()
-        end
+  img = love.graphics.newImage("art/mouse.png") -- load in a custom mouse image
+	control1 = love.graphics.newImage("art/mouse.png")
+	
+  x1 = 30
+	y1 = 70
+	
+  heartbarinit()
+  couragebarinit()
+  controlvariables()	
+  statusmenuvar()
+end
 
-        if the.keys:justPressed('l') then
-            -- Load data into state
-            self.save:load()
-            STATE = self.save.data
+function love.update(dt)
+  --timer for hearts 
+  hearttimer()
+  
+  --courage gain
+  gaincourage()
+  
+  --code controls for bear
+  controls(dt)
 
-            -- Reload view
-            self.view = MapView:new()
-            the.app.view:flash({0, 0, 0}, .75)
-        end
+  -- test in game menu 
+  statusmenuupdate()
 
-        if the.keys:justPressed('x') then
-            -- Save empty state data
-            self.save.data = {}
+  --test status menu
+  
+	if love.keyboard.isDown("down") then
+      y1 = y1 + (100 * dt)
+	end
+	if love.keyboard.isDown("up") then
+      y1 = y1 - (100 * dt)
+	end
+	
+	if y1 > 190 then y1 = 100 end
+	if y1 < 100 then y1 = 190 end
+	
+	if love.keyboard.isDown(" ") then
+        if y1 > 100 and y1 < 130 then end
+        if y1 > 140 and y1 < 170 then end
+		if y1 > 170 and y1 < 200 then end
+		end
+	
+heartchange(x)
+	
+end
 
-            self.save:save()
+function love.draw()
+  drawmainmenu1()
+	
+	love.graphics.print("Direction "..direction.." " .. type(direction), 400, 250)
+	love.graphics.print("Speed " ..speed.. " " .. type(speed), 400, 300)
+	
+	x, y = love.mouse.getPosition() -- get the position of the mouse
+	love.graphics.draw(img, x, y) -- draw the custom mouse image
+	love.graphics.draw(img, x1, y1) -- draw the custom mouse image
+	--draw the heart bar --
+	drawheartbar(10,10)
+	drawstatusmenu()
+	
+	
+	-- show a message
+	--p1:speak()
+	--show stats of shady spider
+	--shady:typestats()
+end
 
-            -- Load data into state
-            self.save:load()
-            STATE = self.save.data
+]]--
 
-            -- Reload view
-            self.view = MapView:new()
-            the.app.view:flash({0, 0, 0}, .75)
-        end
-    end 
-   
-}
+function love.keypressed(key)   -- we do not need the unicode, so we can leave it out
+   if key == "escape" then
+      love.event.push("quit")   -- actually causes the app to quit
+   end
+end
+
+function love.quit()
+  print("Thanks for playing! Come back soon!")
+end

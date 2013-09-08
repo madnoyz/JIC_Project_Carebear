@@ -9,5 +9,5 @@ function love.conf(t)
     t.screen.width = 980
     t.screen.height = 640
     t.modules.joystick = true
-    t.modules.physics = true
+    t.modules.physics = false
 end
